@@ -1,0 +1,121 @@
+Name     clk-low ;
+PartNo   00 ;
+Date     2022-08-24 ;
+Revision 01 ;
+Designer yaros ;
+Company   ;
+Assembly  ;
+Location  ;
+Device   g20v8a ;
+Format j ;
+
+/* Inputs */
+
+Pin 1 = CLK ;
+Pin 2 = CLKIN ;
+Pin 3 = DATAIN ;
+Pin [4..7] = [IR3..0] ;
+Pin 14 = OEN_IN ;
+Pin 23 = IEN_IN ;
+
+Field IR = [IR3..0] ;
+
+Pin 12 = GND ;
+Pin 24 = VCC ;
+
+/* Outputs */
+
+Pin 15 = ADDRESULT ;
+Pin 16 = CELSE ;
+Pin 17 = LOGICRESULT ;
+Pin 18 = SKZ;
+Pin 19 = RR ;
+Pin 20 = C ;
+Pin 21 = WRT ;
+Pin 22 = SUBRESULT ;
+
+/* Intermediate */
+
+Field IRGated = [IRG3..0] ;
+IRGated = IR & !SKZ # 'b'1111 & SKZ;
+DATAIFEN = DATAIN & IEN_IN ;
+NOTDATAIFEN = !DATAIN & IEN_IN ;
+Append
+RR.D = LOGICRESULT ;
+Append
+RR.D = IRGated:'b'0000 & RR
+     # IRGated:'b'1000 & RR
+     # IRGated:'b'1001 & RR
+     # IRGated:'b'1010 & RR
+     # IRGated:'b'1011 & RR
+     # IRGated:'b'1100 & RR
+     # IRGated:'b'1101 & RR
+     # IRGated:'b'1110 & RR
+     # IRGated:'b'1111 & RR ;
+
+/* Definition */
+
+/* LD */
+Append
+RR.D = IRGated:'b'0001 & DATAIFEN ;
+
+/* ADD */
+ADDRESULT = IRGated:'b'0010 & (DATAIFEN $ RR $ C) ;
+Append
+RR.D = ADDRESULT;
+Append
+C.D = IRGated:'b'0010 & (DATAIFEN & RR # C & RR # C & DATAIFEN) ;
+
+/* SUB */
+SUBRESULT = IRGated:'b'0011 & (NOTDATAIFEN $ RR $ C) ;
+Append
+RR.D = SUBRESULT ;
+Append
+C.D = IRGated:'b'0011 & (NOTDATAIFEN & RR # C & RR # C & NOTDATAIFEN) ;
+
+/* ONE */
+Append
+LOGICRESULT = IRGated:'b'0100 ;
+
+CELSE = IRGated:'b'0001 & C
+      # IRGated:'b'0101 & C
+      # IRGated:'b'0111 & C 
+      # IRGated:'b'0110 & C
+      # IRGated:'b'0000 & C
+      # IRGated:'b'1000 & C
+      # IRGated:'b'1001 & C
+      # IRGated:'b'1010 & C
+      # IRGated:'b'1011 & C
+      # IRGated:'b'1100 & C
+      # IRGated:'b'1101 & C
+      # IRGated:'b'1110 & C
+      # IRGated:'b'1111 & C ;
+Append C.D = CELSE ;
+
+/* NAND */
+Append
+LOGICRESULT = IRGated:'b'0101 & !(RR & DATAIFEN) ;
+
+/* OR */
+Append
+LOGICRESULT = IRGated:'b'0110 & (RR # DATAIFEN) ;
+
+/* XOR */
+Append
+LOGICRESULT = IRGated:'b'0111 & (RR $ DATAIFEN) ;
+
+/* STO */
+Append
+WRT = IRGated:'b'1000 & OEN_IN & !CLKIN ;
+
+/* STOC */
+Append
+WRT = IRGated:'b'1001 & OEN_IN & !CLKIN ;
+
+/* RTN */
+Append
+SKZ.D = IRGated:'b'1101 ;
+
+/* SKZ */
+Append
+SKZ.D = IRGated:'b'1110 & !RR ;

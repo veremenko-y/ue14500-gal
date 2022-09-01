@@ -1,0 +1,273 @@
+
+*******************************************************************************
+                                    clk-low
+*******************************************************************************
+
+CUPL(WM)        5.0a Serial# MW-10400000
+Device          g20v8ms  Library DLIB-h-40-3
+Created         Thu Sep 01 06:21:22 2022
+Name            clk-low 
+Partno          00 
+Revision        01 
+Date            2022-08-24 
+Designer        yaros 
+Company         
+Assembly        
+Location        
+
+===============================================================================
+                            Expanded Product Terms
+===============================================================================
+
+ADDRESULT =>
+    !C & !DATAIN & !IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # !C & !IEN_IN & !IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # C & !DATAIN & !IR0 & IR1 & !IR2 & !IR3 & !RR & !SKZ
+  # C & !IEN_IN & !IR0 & IR1 & !IR2 & !IR3 & !RR & !SKZ
+  # C & DATAIN & IEN_IN & !IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # !C & DATAIN & IEN_IN & !IR0 & IR1 & !IR2 & !IR3 & !RR & !SKZ
+
+C.d  =>
+    CELSE
+  # C & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # C & !DATAIN & IEN_IN & IR0 & IR1 & !IR2 & !IR3 & !SKZ
+  # C & DATAIN & IEN_IN & !IR0 & IR1 & !IR2 & !IR3 & !SKZ
+  # !DATAIN & IEN_IN & IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # DATAIN & IEN_IN & !IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+
+CELSE =>
+    C & IR3
+  # C & SKZ
+  # C & IR0 & !IR1
+  # C & IR1 & IR2
+  # C & !IR1 & !IR2
+
+DATAIFEN =>
+    DATAIN & IEN_IN
+
+IR =>
+    IR3 , IR2 , IR1 , IR0
+
+IRG0 =>
+    IR0 & !SKZ
+  # SKZ
+
+IRG1 =>
+    IR1 & !SKZ
+  # SKZ
+
+IRG2 =>
+    IR2 & !SKZ
+  # SKZ
+
+IRG3 =>
+    IR3 & !SKZ
+  # SKZ
+
+IRGated =>
+    IRG3 , IRG2 , IRG1 , IRG0
+
+LOGICRESULT =>
+    !DATAIN & IR2 & !IR3 & RR & !SKZ
+  # !IEN_IN & IR2 & !IR3 & RR & !SKZ
+  # !IR0 & IR2 & !IR3 & RR & !SKZ
+  # !IR1 & IR2 & !IR3 & !RR & !SKZ
+  # DATAIN & IEN_IN & IR2 & !IR3 & !RR & !SKZ
+
+NOTDATAIFEN =>
+    !DATAIN & IEN_IN
+
+RR.d  =>
+    ADDRESULT
+  # LOGICRESULT
+  # SUBRESULT
+  # IR3 & RR
+  # RR & SKZ
+  # !IR0 & !IR1 & !IR2 & RR
+  # DATAIN & IEN_IN & IR0 & !IR1 & !IR2 & !IR3 & !SKZ
+
+SKZ.d  =>
+    IR0 & !IR1 & IR2 & IR3 & !SKZ
+  # !IR0 & IR1 & IR2 & IR3 & !RR & !SKZ
+
+SUBRESULT =>
+    !C & DATAIN & IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # !C & !IEN_IN & IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # C & DATAIN & IR0 & IR1 & !IR2 & !IR3 & !RR & !SKZ
+  # C & !IEN_IN & IR0 & IR1 & !IR2 & !IR3 & !RR & !SKZ
+  # C & !DATAIN & IEN_IN & IR0 & IR1 & !IR2 & !IR3 & RR & !SKZ
+  # !C & !DATAIN & IEN_IN & IR0 & IR1 & !IR2 & !IR3 & !RR & !SKZ
+
+WRT =>
+    !CLKIN & !IR1 & !IR2 & IR3 & OEN_IN & !SKZ
+
+ADDRESULT.oe  =>
+    1 
+
+CELSE.oe  =>
+    1 
+
+LOGICRESULT.oe  =>
+    1 
+
+SUBRESULT.oe  =>
+    1 
+
+WRT.oe  =>
+    1 
+
+
+===============================================================================
+                                 Symbol Table
+===============================================================================
+
+Pin Variable                                    Pterms   Max     Min    
+Pol   Name              Ext     Pin     Type     Used   Pterms  Level   
+--- --------            ---     ---     ----    ------  ------  -----   
+
+    ADDRESULT                   15       V        6       7       2     
+    C                           20       V        -       -       -     
+    C                   d       20       X        6       8       2     
+    CELSE                       16       V        5       7       2     
+    CLK                         1        V        -       -       -     
+    CLKIN                       2        V        -       -       -     
+    DATAIFEN                    0        I        1       -       -     
+    DATAIN                      3        V        -       -       -     
+    GND                         12       V        -       -       -     
+    IEN_IN                      23       V        -       -       -     
+    IR                          0        F        -       -       -     
+    IR0                         7        V        -       -       -     
+    IR1                         6        V        -       -       -     
+    IR2                         5        V        -       -       -     
+    IR3                         4        V        -       -       -     
+    IRG0                        0        I        2       -       -     
+    IRG1                        0        I        2       -       -     
+    IRG2                        0        I        2       -       -     
+    IRG3                        0        I        2       -       -     
+    IRGated                     0        F        -       -       -     
+    LOGICRESULT                 17       V        5       7       2     
+    NOTDATAIFEN                 0        I        1       -       -     
+    OEN_IN                      14       V        -       -       -     
+    RR                          19       V        -       -       -     
+    RR                  d       19       X        7       8       2     
+    SKZ                         18       V        -       -       -     
+    SKZ                 d       18       X        2       8       2     
+    SUBRESULT                   22       V        6       7       2     
+    VCC                         24       V        -       -       -     
+    WRT                         21       V        1       7       2     
+    ADDRESULT           oe      15       D        1       1       0     
+    CELSE               oe      16       D        1       1       0     
+    LOGICRESULT         oe      17       D        1       1       0     
+    SUBRESULT           oe      22       D        1       1       0     
+    WRT                 oe      21       D        1       1       0     
+
+
+LEGEND    D : default variable         F : field      G : group
+          I : intermediate variable    N : node       M : extended node
+          U : undefined                V : variable   X : extended variable
+          T : function
+
+
+===============================================================================
+                                   Fuse Plot
+===============================================================================
+
+Syn   02704 x Ac0   02705 - 
+
+Pin #22  02560  Pol -  02632  Ac1 - 
+ 00000 ---------------------------------------- 
+ 00040 ----x----x---x-xx-x-x--x---------------- 
+ 00080 ---x-----x---x-xx-x-x--x---------------- 
+ 00120 ----x----x---xx-x--xx--x---------------- 
+ 00160 ---x-----x---xx-x--xx--x---------------- 
+ 00200 --x--x---x---xx-x-x-x--x---------------- 
+ 00240 --x--x---x---x-xx--xx--x---------------- 
+ 00280 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #21  02561  Pol -  02633  Ac1 - 
+ 00320 ---------------------------------------- 
+ 00360 -x------x----x---x-----x--------------x- 
+ 00400 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00440 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00480 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00520 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00560 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00600 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #20  02562  Pol -  02634  Ac1 x 
+ 00640 ------------------------------x--------- 
+ 00680 ---------x---xx-x-x----x---------------- 
+ 00720 --x--x---x---xx-x---x--x---------------- 
+ 00760 --x-x----x---xx-x----x-x---------------- 
+ 00800 --x--x---x---x--x-x-x--x---------------- 
+ 00840 --x-x----x---x--x-x--x-x---------------- 
+ 00880 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00920 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #19  02563  Pol -  02635  Ac1 x 
+ 00960 ----------------------------------x----- 
+ 01000 --------------------------x------------- 
+ 01040 ------x--------------------------------- 
+ 01080 --------x---------x--------------------- 
+ 01120 ------------------x---x----------------- 
+ 01160 -------------x---xx--x------------------ 
+ 01200 --x-x----x---x---x--x--x---------------- 
+ 01240 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #18  02564  Pol -  02636  Ac1 x 
+ 01280 --------x---x----x--x--x---------------- 
+ 01320 --------x---x---x--x-x-x---------------- 
+ 01360 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01400 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01440 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01480 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01520 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01560 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #17  02565  Pol -  02637  Ac1 - 
+ 01600 ---------------------------------------- 
+ 01640 -----x---x--x-----x----x---------------- 
+ 01680 ---x-----x--x-----x----x---------------- 
+ 01720 ---------x--x-----x--x-x---------------- 
+ 01760 ---------x--x----x-x---x---------------- 
+ 01800 --x-x----x--x------x---x---------------- 
+ 01840 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01880 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #16  02566  Pol -  02638  Ac1 - 
+ 01920 ---------------------------------------- 
+ 01960 --------x-----x------------------------- 
+ 02000 --------------x-------x----------------- 
+ 02040 --------------x--x--x------------------- 
+ 02080 ------------x-x-x----------------------- 
+ 02120 -------------xx--x---------------------- 
+ 02160 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 02200 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #15  02567  Pol -  02639  Ac1 - 
+ 02240 ---------------------------------------- 
+ 02280 -----x---x---x-xx-x--x-x---------------- 
+ 02320 ---x-----x---x-xx-x--x-x---------------- 
+ 02360 -----x---x---xx-x--x-x-x---------------- 
+ 02400 ---x-----x---xx-x--x-x-x---------------- 
+ 02440 --x-x----x---xx-x-x--x-x---------------- 
+ 02480 --x-x----x---x-xx--x-x-x---------------- 
+ 02520 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+
+
+LEGEND    X : fuse not blown 
+          - : fuse blown 
+
+===============================================================================
+                                 Chip Diagram
+===============================================================================
+
+                               ______________
+                              |   clk-low    |
+                      CLK x---|1           24|---x VCC                      
+                    CLKIN x---|2           23|---x IEN_IN                   
+                   DATAIN x---|3           22|---x SUBRESULT                
+                      IR3 x---|4           21|---x WRT                      
+                      IR2 x---|5           20|---x C                        
+                      IR1 x---|6           19|---x RR                       
+                      IR0 x---|7           18|---x SKZ                      
+                          x---|8           17|---x LOGICRESULT              
+                          x---|9           16|---x CELSE                    
+                          x---|10          15|---x ADDRESULT                
+                          x---|11          14|---x OEN_IN                   
+                      GND x---|12          13|---x                          
+                              |______________|
+

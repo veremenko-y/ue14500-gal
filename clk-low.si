@@ -1,0 +1,50 @@
+Name     clk-low;
+PartNo   00;
+Date     2022-08-24;
+Revision 01;
+Designer yaros;
+Company  ;
+Assembly ;
+Location ;
+Device   g20v8a;
+
+
+ORDER: 
+    CLK, CLKIN, IR, DATAIN, OEN_IN, IEN_IN,
+    SKZ, RR, C, WRT;
+
+VECTORS:
+/* Test reset and stabilize */
+C0'4'000****
+C0'4'000****
+
+/* IEN */
+C0'A'000LHLL
+C0'A'101LHLL
+C0'0'001LHLL
+C0'A'000LHLL
+
+/* RTN */
+C0'D'000HHLL
+00'F'000HHLL
+10'F'000LHLL
+00'F'000LHLL
+C0'F'000LHLL
+
+/* LD */
+C0'1'000LLLL
+C0'1'100LLLL
+C0'4'000LHLL
+C0'1'001LLLL
+C0'1'101LHLL
+
+C0'1'001LLLL
+C0'2'001LLLL
+C0'2'101LHLL
+C0'2'101LLHL
+C0'0'101LLHL
+C0'0'101LLHL
+C0'0'101LLHL
+C0'2'001LHLL
+C0'4'001LHLL
+C0'2'001LHLL
