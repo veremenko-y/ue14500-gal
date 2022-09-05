@@ -1,4 +1,4 @@
-*.abs
-*.lst
-*.sim
-*.wo
+out/*.abs
+out/*.lst
+out/*.sim
+out/*.wo

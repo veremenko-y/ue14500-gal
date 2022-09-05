@@ -1,4 +1,4 @@
-Name     clk-high ;
+Name     clk-high-latch ;
 PartNo   00 ;
 Date     2022-08-24 ;
 Revision 01 ;
@@ -9,4 +9,5 @@ Location  ;
 Device   g20v8a ;
 Format j ;
 
+$DEFINE LATCHED_FLAGS
 $INCLUDE clk-high.inc

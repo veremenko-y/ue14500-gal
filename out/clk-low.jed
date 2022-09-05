@@ -1,7 +1,7 @@
 
 CUPL(WM)        5.0a  Serial# MW-10400000
 Device          g20v8ms  Library DLIB-h-40-3
-Created         Thu Sep 01 06:21:22 2022
+Created         Mon Sep 05 13:46:47 2022
 Name            clk-low 
 Partno          00 
 Revision        01 
@@ -104,4 +104,4 @@ Location
 *V0024 C000010XXXXNX0XXXLHLLX1N
 *V0025 C000100XXXXNX0XXXLHLLX1N
 *V0026 C000010XXXXNX0XXXLHLLX1N
-*03E4
+*03ED
